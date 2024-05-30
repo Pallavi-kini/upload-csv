@@ -68,35 +68,59 @@ export class SavedFileComponent implements OnInit {
       const errors: { [key: string]: string } = {};
 
       // Validate Name
-      if (typeof item.Name !== 'string' || item.Name.trim() === '') {
-        isValid = false;
-        errors['Name'] = 'Invalid string';
+      if (item.Name === '') {
+        errors['Name'] = 'Name is required';
+      } else {
+        if (typeof item.Name !== 'string') {
+          isValid = false;
+          errors['Name'] = 'Invalid string';
+        }
       }
 
       // Validate Email
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-      if (!emailPattern.test(item.Email)) {
+      if (!item.Email || typeof item.Email !== 'string' || !item.Email.trim()) {
         isValid = false;
-        errors['Email'] = 'Invalid email';
+        errors['Email'] = 'Email is required';
+      } else {
+        const emailPattern =
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (!emailPattern.test(item.Email.trim())) {
+          isValid = false;
+          errors['Email'] = 'Invalid email format';
+        }
       }
 
       // Validate Phone
-      const phonePattern = /^\d{10}$/;
-      if (!phonePattern.test(item.Phone)) {
-        isValid = false;
-        errors['Phone'] = 'Number should be 10 digits';
+      if (item.Phone === '') {
+        errors['Phone'] = 'Number is required';
+      } else {
+        const phonePattern = /^\d{10}$/;
+        if (!phonePattern.test(item.Phone)) {
+          isValid = false;
+          errors['Phone'] = 'Number should be 10 digits';
+        }
       }
 
       // Validate City
-      if (typeof item.City !== 'string' || item.City.trim() === '') {
-        isValid = false;
-        errors['City'] = 'Invalid string';
+      if (item.City === '') {
+        errors['City'] = 'City is required';
+      } else {
+        if (typeof item.City !== 'string') {
+          isValid = false;
+          errors['City'] = 'Invalid string';
+        }
       }
 
       // Validate Address
-      if (typeof item.Addresss !== 'string' || item.Addresss.trim() === '') {
-        isValid = false;
-        errors['Address'] = 'Invalid string';
+      if (item.Addresss === '') {
+        // Corrected the typo here
+        errors['Address'] = 'Address is required';
+      } else {
+        if (typeof item.Addresss !== 'string') {
+          // Corrected the typo here
+          isValid = false;
+          errors['Address'] = 'Invalid string';
+        }
       }
 
       // Validate CGPA

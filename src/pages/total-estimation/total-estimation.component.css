@@ -13,6 +13,14 @@
   border: 1px solid black;
 }
 
+.estimation-content-total {
+  display: flex;
+  width: 100%;
+  gap: 313px;
+  padding: 14px 0px 16px 0px;
+  border: 1px solid black;
+}
+
 .box-data {
   outline: 1px solid black;
   width: 600px;

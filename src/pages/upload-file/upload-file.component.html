@@ -1,25 +1,33 @@
-<div class="parent-container">
-  <div class="upload-container">
-    <h1>Upload CSV</h1>
-    <input
-      type="file"
-      id="fileInput"
-      accept=".csv"
-      hidden
-      (change)="onFileChange($event)"
-    />
-    <!-- (change)="onFileChange($event)" -->
-    <img
-      src="../../assets/upload.png"
-      alt="Upload Icon"
-      class="upload-icon"
-      (click)="triggerFileInput()"
-    />
-    <p>Select A csv file to upload</p>
-    <button (click)="triggerFileInput()">Upload</button>
-    <p *ngIf="selectedFile">Selected file: {{ selectedFile.name }}</p>
-    <p routerLink="saved" style="color: blue; cursor: pointer">
-      View Uploaded File
-    </p>
+<div style="min-height: 100vh">
+  <div class="home-box" routerLink="">
+    <span>
+      <img src="../../assets/home1.png" alt="" class="home-image" />
+    </span>
+    <span> CSV Uploader </span>
+  </div>
+  <div class="parent-container">
+    <div class="upload-container">
+      <h1>Upload CSV</h1>
+      <input
+        type="file"
+        id="fileInput"
+        accept=".csv"
+        hidden
+        (change)="onFileChange($event)"
+      />
+      <!-- (change)="onFileChange($event)" -->
+      <img
+        src="../../assets/upload.png"
+        alt="Upload Icon"
+        class="upload-icon"
+        (click)="triggerFileInput()"
+      />
+      <p>Select A csv file to upload</p>
+      <button (click)="triggerFileInput()">Upload</button>
+      <p *ngIf="selectedFile">Selected file: {{ selectedFile.name }}</p>
+      <p routerLink="saved" style="color: blue; cursor: pointer">
+        View Uploaded File
+      </p>
+    </div>
   </div>
 </div>

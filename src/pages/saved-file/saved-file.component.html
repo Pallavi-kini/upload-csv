@@ -6,40 +6,42 @@
     <span> CSV Uploader </span>
   </div>
   <h2>Students Detail</h2>
-  <table *ngIf="validatedData && validatedData.length > 0">
-    <thead>
-      <tr class="tr-head">
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>CGPA</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of validatedData">
-        <td [ngClass]="row.errors?.Name ? 'error-cell' : 'valid-cell'">
-          {{ row.errors?.Name ? row.errors.Name : row.Name }}
-        </td>
-        <td [ngClass]="row.errors?.Email ? 'error-cell' : 'valid-cell'">
-          {{ row.errors?.Email ? row.errors.Email : row.Email }}
-        </td>
-        <td [ngClass]="row.errors?.Phone ? 'error-cell' : 'valid-cell'">
-          {{ row.errors?.Phone ? row.errors.Phone : row.Phone }}
-        </td>
-        <td [ngClass]="row.errors?.Address ? 'error-cell' : 'valid-cell'">
-          {{ row.errors?.Address ? row.errors.Address : row.Addresss }}
-        </td>
-        <td [ngClass]="row.errors?.City ? 'error-cell' : 'valid-cell'">
-          {{ row.errors?.City ? row.errors.City : row.City }}
-        </td>
-        <td [ngClass]="row.errors?.CGPA ? 'error-cell' : 'valid-cell'">
-          {{ row.errors?.CGPA ? row.errors.CGPA : row.CGPA }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div style="overflow-x: auto">
+    <table *ngIf="validatedData && validatedData.length > 0">
+      <thead>
+        <tr class="tr-head">
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>CGPA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of validatedData">
+          <td [ngClass]="row.errors?.Name ? 'error-cell' : 'valid-cell'">
+            {{ row.errors?.Name ? row.errors.Name : row.Name }}
+          </td>
+          <td [ngClass]="row.errors?.Email ? 'error-cell' : 'valid-cell'">
+            {{ row.errors?.Email ? row.errors.Email : row.Email }}
+          </td>
+          <td [ngClass]="row.errors?.Phone ? 'error-cell' : 'valid-cell'">
+            {{ row.errors?.Phone ? row.errors.Phone : row.Phone }}
+          </td>
+          <td [ngClass]="row.errors?.Address ? 'error-cell' : 'valid-cell'">
+            {{ row.errors?.Address ? row.errors.Address : row.Addresss }}
+          </td>
+          <td [ngClass]="row.errors?.City ? 'error-cell' : 'valid-cell'">
+            {{ row.errors?.City ? row.errors.City : row.City }}
+          </td>
+          <td [ngClass]="row.errors?.CGPA ? 'error-cell' : 'valid-cell'">
+            {{ row.errors?.CGPA ? row.errors.CGPA : row.CGPA }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div *ngIf="!parsedData || parsedData.length === 0">No data available.</div>
   <div *ngIf="validatedData && validatedData.length > 0">
     <h3 style="color: blue; cursor: pointer" routerLink="estimated">

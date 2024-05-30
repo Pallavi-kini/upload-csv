@@ -37,8 +37,29 @@ button:hover:not(:disabled) {
 }
 
 .parent-container {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin-top: 90px;
+}
+
+.home-image {
+  height: 40px;
+  width: 40px;
+}
+
+.home-box {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+  .upload-container {
+    padding: 100px;
+  }
 }

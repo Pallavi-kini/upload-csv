@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { StoreCsvService } from 'src/store-csv.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -10,7 +11,11 @@ import { Router } from '@angular/router';
 export class UploadFileComponent {
   selectedFile: File | null = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private StoreCsvService: StoreCsvService
+  ) {}
 
   onFileChange(event: any): void {
     this.selectedFile = event.target.files[0];
@@ -19,9 +24,9 @@ export class UploadFileComponent {
       const reader = new FileReader();
       reader.readAsText(this.selectedFile);
       reader.onload = () => {
-        const csvContent = reader.result as string;
-        console.log(csvContent); // This will log the content of the CSV file
-        this.processCSV(csvContent);
+        const csvContent = reader.result as string; // Get the CSV content from reader.result
+        const parsedData = this.parseCsv(csvContent); // Parse the CSV content
+        this.StoreCsvService.setCsvData(parsedData); // Store the parsed data
       };
       reader.onerror = (error) => {
         console.error('Error reading file:', error);
@@ -30,10 +35,18 @@ export class UploadFileComponent {
   }
 
   // Method to process CSV content
-  processCSV(csvContent: string): void {
-    // Implement your CSV parsing logic here
-    console.log('Processing CSV content:', csvContent);
-    // For example, you can use a CSV parsing library like PapaParse to convert the content to a usable format
+  private parseCsv(csvContent: string): any[] {
+    const lines = csvContent.split('\n');
+    const headers = lines[0].split(',');
+    const data = lines.slice(1).map((line) => {
+      const values = line.split(',');
+      const obj: any = {};
+      headers.forEach((header, index) => {
+        obj[header.trim()] = values[index]?.trim();
+      });
+      return obj;
+    });
+    return data;
   }
 
   triggerFileInput() {

@@ -1,0 +1,22 @@
+.td-box {
+  border: 1px solid black;
+  padding: 15px;
+}
+
+.tr-head {
+  outline: 1px solid black;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.invalid {
+  background-color: #f8d7da;
+}
+
+.error {
+  color: #dc3545;
+}

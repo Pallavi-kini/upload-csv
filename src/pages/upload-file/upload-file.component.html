@@ -18,5 +18,6 @@
     <p>Select A csv file to upload</p>
     <button (click)="triggerFileInput()">Upload</button>
     <p *ngIf="selectedFile">Selected file: {{ selectedFile.name }}</p>
+    <p routerLink="saved" style="cursor: pointer">View Uploaded File</p>
   </div>
 </div>

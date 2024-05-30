@@ -1,4 +1,5 @@
-<div>
+<div class="table-container">
+  <h2>Students Detail</h2>
   <table *ngIf="validatedData && validatedData.length > 0">
     <thead>
       <tr class="tr-head">
@@ -33,6 +34,10 @@
       </tr>
     </tbody>
   </table>
-
   <div *ngIf="!parsedData || parsedData.length === 0">No data available.</div>
+  <div *ngIf="validatedData && validatedData.length > 0">
+    <h3 style="color: blue; cursor: pointer" routerLink="estimated">
+      View Estimated Report
+    </h3>
+  </div>
 </div>

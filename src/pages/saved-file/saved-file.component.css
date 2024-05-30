@@ -28,3 +28,11 @@
   color: red;
   padding: 15px;
 }
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}

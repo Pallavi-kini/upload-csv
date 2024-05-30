@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreCsvService } from 'src/store-csv.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-saved-file',
@@ -12,12 +13,14 @@ export class SavedFileComponent implements OnInit {
   validatedData: any[] = [];
   isNameString = true;
 
-  constructor(private storeCsvService: StoreCsvService) {}
+  constructor(
+    private storeCsvService: StoreCsvService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.storeCsvService.csvData$.subscribe((data) => {
       if (data !== null) {
-        // Parse and trim CGPA, then validate data
         this.csvData = data;
         this.parsedData = data.map((item) => {
           // Loop through each property of the item
@@ -27,14 +30,14 @@ export class SavedFileComponent implements OnInit {
                 item[prop] = parseFloat(
                   item[prop].toString().replace('\r', '')
                 );
-              } else {
-                item[prop] = item[prop];
               }
             }
           }
-          const cgpa = item['CGPA\r']
-            ? parseFloat(item['CGPA\r'].toString().replace('\r', ''))
-            : NaN;
+          let cgpa = NaN;
+          if (item.hasOwnProperty('CGPA') || item.hasOwnProperty('CGPA\r')) {
+            const cgpaValue = item['CGPA'] || item['CGPA\r'];
+            cgpa = parseFloat(cgpaValue.toString().replace('\r', ''));
+          }
           return {
             ...item,
             CGPA: cgpa,
@@ -90,7 +93,12 @@ export class SavedFileComponent implements OnInit {
       }
 
       // Validate CGPA
-      if (typeof item.CGPA !== 'number' || item.CGPA < 0 || item.CGPA > 10) {
+      if (
+        typeof item.CGPA !== 'number' ||
+        isNaN(item.CGPA) ||
+        item.CGPA < 0 ||
+        item.CGPA > 10
+      ) {
         isValid = false;
         errors['CGPA'] = 'Invalid CGPA';
       }

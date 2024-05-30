@@ -46,7 +46,6 @@ export class SavedFileComponent implements OnInit {
 
         // Validate data
         this.validatedData = this.validateData(this.parsedData);
-        console.log(this.validatedData);
 
         const validation = {
           total: this.validatedData.length,
@@ -85,7 +84,7 @@ export class SavedFileComponent implements OnInit {
       const phonePattern = /^\d{10}$/;
       if (!phonePattern.test(item.Phone)) {
         isValid = false;
-        errors['Phone'] = 'Invalid phone number';
+        errors['Phone'] = 'Number should be 10 digits';
       }
 
       // Validate City

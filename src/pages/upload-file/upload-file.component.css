@@ -1,14 +1,13 @@
-/* src/app/upload-csv/upload-csv.component.css */
 .upload-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 49px 167px 49px 166px;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #f9f9f9;
-  width: 300px;
+  /* width: 300px; */
   margin: 0 auto;
 }
 

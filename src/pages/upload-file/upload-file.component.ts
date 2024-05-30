@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { StoreCsvService } from 'src/store-csv.service';
 
 @Component({
@@ -11,15 +9,10 @@ import { StoreCsvService } from 'src/store-csv.service';
 export class UploadFileComponent {
   selectedFile: File | null = null;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private StoreCsvService: StoreCsvService
-  ) {}
+  constructor(private StoreCsvService: StoreCsvService) {}
 
   onFileChange(event: any): void {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
     if (this.selectedFile) {
       const reader = new FileReader();
       reader.readAsText(this.selectedFile);
@@ -52,24 +45,5 @@ export class UploadFileComponent {
   triggerFileInput() {
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
     fileInput.click();
-    console.log(fileInput);
   }
-
-  // uploadFile() {
-  //   if (this.selectedFile) {
-  //     const formData = new FormData();
-  //     formData.append('file', this.selectedFile, this.selectedFile.name);
-
-  //     this.http.post('/api/upload', formData).subscribe(
-  //       (response) => {
-  //         console.log('File uploaded successfully', response);
-  //       },
-  //       (error) => {
-  //         console.error('File upload failed', error);
-  //       }
-  //     );
-  //   } else {
-  //     alert('Please select a file first');
-  //   }
-  // }
 }

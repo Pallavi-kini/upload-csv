@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', component: UploadFileComponent },
   { path: 'saved', component: SavedFileComponent },
   { path: 'estimated', component: TotalEstimationComponent },
+  { path: 'saved/estimated', redirectTo: 'estimated', pathMatch: 'full' },
 ];
 
 @NgModule({

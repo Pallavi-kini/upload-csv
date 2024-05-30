@@ -18,3 +18,17 @@
   width: 600px;
   margin-top: 20px;
 }
+
+.home-image {
+  height: 40px;
+  width: 40px;
+}
+
+.home-box {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  cursor: pointer;
+}

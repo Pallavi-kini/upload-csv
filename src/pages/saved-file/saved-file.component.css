@@ -36,3 +36,17 @@
   text-align: center;
   flex-direction: column;
 }
+
+.home-image {
+  height: 40px;
+  width: 40px;
+}
+
+.home-box {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  cursor: pointer;
+}

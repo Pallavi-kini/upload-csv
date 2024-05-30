@@ -47,6 +47,14 @@ export class SavedFileComponent implements OnInit {
         // Validate data
         this.validatedData = this.validateData(this.parsedData);
         console.log(this.validatedData);
+
+        const validation = {
+          total: this.validatedData.length,
+          success: this.validatedData.filter((row) => row.isValid).length,
+          error: this.validatedData.filter((row) => !row.isValid).length,
+        };
+
+        this.storeCsvService.setValidatedData(validation);
       }
     });
   }

@@ -1,4 +1,10 @@
 <div class="import-data">
+  <div class="home-box" routerLink="">
+    <span>
+      <img src="../../assets/home1.png" alt="" class="home-image" />
+    </span>
+    <span> CSV Uploader </span>
+  </div>
   <div class="import-success">
     <img src="../../assets/done-successful.jpg" alt="" />
     <h3>Data imported Successfully</h3>
@@ -10,14 +16,11 @@
     <h3 style="color: blue">Students Detail</h3>
     <div class="estimation-content">
       <span>Students Details :</span>
-      <span>Success:</span>
+      <span style="color: blue">Success: {{ success }}</span>
     </div>
     <div class="estimation-content">
-      <span>Total Number No.</span>
-      <span>Failure:</span>
+      <span>Total Number No: {{ totalRecord }}</span>
+      <span style="color: red">Failure: {{ error }}</span>
     </div>
-  </div>
-  <div>
-    <button>Print the data</button>
   </div>
 </div>

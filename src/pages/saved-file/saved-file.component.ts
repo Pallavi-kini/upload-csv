@@ -12,30 +12,32 @@ export class SavedFileComponent implements OnInit {
   validatedData: any[] = [];
   isNameString = true;
 
-  constructor(private StoreCsvService: StoreCsvService) {}
+  constructor(private storeCsvService: StoreCsvService) {}
 
   ngOnInit() {
-    this.StoreCsvService.csvData$.subscribe((data) => {
+    this.storeCsvService.csvData$.subscribe((data) => {
       if (data !== null) {
-        // console.log(data);
         // Parse and trim CGPA, then validate data
         this.csvData = data;
         this.parsedData = data.map((item) => {
-          // console.log(item);
           // Loop through each property of the item
           for (const prop in item) {
             if (Object.prototype.hasOwnProperty.call(item, prop)) {
-              // console.log(this.isNumeric(item[prop]));
               if (this.isNumeric(item[prop])) {
-                item[prop] = parseFloat(item[prop]);
+                item[prop] = parseFloat(
+                  item[prop].toString().replace('\r', '')
+                );
+              } else {
+                item[prop] = item[prop];
               }
             }
           }
-          const cgpa = parseFloat(item['CGPA\r']);
-          const trimmedCgpa = cgpa.toString().replace(/\r$/, '');
+          const cgpa = item['CGPA\r']
+            ? parseFloat(item['CGPA\r'].toString().replace('\r', ''))
+            : NaN;
           return {
             ...item,
-            CGPA: parseFloat(trimmedCgpa),
+            CGPA: cgpa,
           };
         });
 
@@ -47,7 +49,7 @@ export class SavedFileComponent implements OnInit {
   }
 
   isNumeric = (value: string | number) => {
-    return !isNaN(Number.parseFloat(value.toString()));
+    return !isNaN(Number(value)) && value !== null && value !== '';
   };
 
   validateData(data: any[]): any[] {

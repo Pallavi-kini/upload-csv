@@ -12,28 +12,27 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of validatedData">
-        <td [ngClass]="{ error: row.errors?.Name }">
-          {{ row.errors?.Name || row.Name }}
+        <td [ngClass]="row.errors?.Name ? 'error-cell' : 'valid-cell'">
+          {{ row.errors?.Name ? row.errors.Name : row.Name }}
         </td>
-        <td [ngClass]="{ error: row.errors?.Email }">
-          {{ row.errors?.Email || row.Email }}
+        <td [ngClass]="row.errors?.Email ? 'error-cell' : 'valid-cell'">
+          {{ row.errors?.Email ? row.errors.Email : row.Email }}
         </td>
-        <td [ngClass]="{ error: row.errors?.Phone }">
-          {{ row.errors?.Phone || row.Phone }}
+        <td [ngClass]="row.errors?.Phone ? 'error-cell' : 'valid-cell'">
+          {{ row.errors?.Phone ? row.errors.Phone : row.Phone }}
         </td>
-        <td [ngClass]="{ error: row.errors?.Address }">
-          {{ row.errors?.Address || row.Addresss }}
+        <td [ngClass]="row.errors?.Address ? 'error-cell' : 'valid-cell'">
+          {{ row.errors?.Address ? row.errors.Address : row.Addresss }}
         </td>
-        <td [ngClass]="{ error: row.errors?.City }">
-          {{ row.errors?.City || row.City }}
+        <td [ngClass]="row.errors?.City ? 'error-cell' : 'valid-cell'">
+          {{ row.errors?.City ? row.errors.City : row.City }}
         </td>
-        <td [ngClass]="{ error: row.errors?.CGPA }">
-          {{ row.errors?.CGPA || row.CGPA }}
+        <td [ngClass]="row.errors?.CGPA ? 'error-cell' : 'valid-cell'">
+          {{ row.errors?.CGPA ? row.errors.CGPA : row.CGPA }}
         </td>
       </tr>
     </tbody>
   </table>
-  <div>
-    <div *ngIf="!parsedData || parsedData.length === 0">No data available.</div>
-  </div>
+
+  <div *ngIf="!parsedData || parsedData.length === 0">No data available.</div>
 </div>

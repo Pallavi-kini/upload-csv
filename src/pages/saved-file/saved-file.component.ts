@@ -137,4 +137,19 @@ export class SavedFileComponent implements OnInit {
       return { ...item, isValid, errors };
     });
   }
+
+  addRow() {
+    this.validatedData.push({
+      Name: '',
+      Email: '',
+      Phone: '',
+      Address: '',
+      City: '',
+      CGPA: '',
+    });
+  }
+
+  handleCheckForString(data: any) {
+    console.log(data);
+  }
 }

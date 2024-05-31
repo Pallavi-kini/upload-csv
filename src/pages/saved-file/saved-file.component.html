@@ -21,31 +21,61 @@
       <tbody>
         <tr *ngFor="let row of validatedData">
           <td [ngClass]="row.errors?.Name ? 'error-cell' : 'valid-cell'">
-            {{ row.errors?.Name ? row.errors.Name : row.Name }}
+            <input
+              type="text"
+              [(ngModel)]="row.Name"
+              [ngClass]="row.errors?.Name ? 'error-input' : ''"
+              (keyup)="handleCheckForString($event.target)"
+            />
           </td>
           <td [ngClass]="row.errors?.Email ? 'error-cell' : 'valid-cell'">
-            {{ row.errors?.Email ? row.errors.Email : row.Email }}
+            <input
+              type="email"
+              [(ngModel)]="row.Email"
+              [ngClass]="row.errors?.Email ? 'error-input' : ''"
+            />
           </td>
           <td [ngClass]="row.errors?.Phone ? 'error-cell' : 'valid-cell'">
-            {{ row.errors?.Phone ? row.errors.Phone : row.Phone }}
+            <input
+              type="number"
+              [(ngModel)]="row.Phone"
+              [ngClass]="row.errors?.Phone ? 'error-input' : ''"
+            />
           </td>
-          <td [ngClass]="row.errors?.Address ? 'error-cell' : 'valid-cell'">
-            {{ row.errors?.Address ? row.errors.Address : row.Addresss }}
+          <td [ngClass]="row.errors?.Addresss ? 'error-cell' : 'valid-cell'">
+            <input
+              type="text"
+              [(ngModel)]="row.Addresss"
+              [ngClass]="row.errors?.Addresss ? 'error-input' : ''"
+            />
           </td>
           <td [ngClass]="row.errors?.City ? 'error-cell' : 'valid-cell'">
-            {{ row.errors?.City ? row.errors.City : row.City }}
+            <input
+              type="text"
+              [(ngModel)]="row.City"
+              [ngClass]="row.errors?.City ? 'error-input' : ''"
+            />
           </td>
           <td [ngClass]="row.errors?.CGPA ? 'error-cell' : 'valid-cell'">
-            {{ row.errors?.CGPA ? row.errors.CGPA : row.CGPA }}
+            <input
+              type="number"
+              [(ngModel)]="row.CGPA"
+              [ngClass]="row.errors?.CGPA ? 'error-input' : ''"
+            />
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div *ngIf="!parsedData || parsedData.length === 0">No data available.</div>
-  <div *ngIf="validatedData && validatedData.length > 0">
-    <h3 style="color: blue; cursor: pointer" routerLink="estimated">
-      View Estimated Report
-    </h3>
+  <div *ngIf="!validatedData || validatedData.length === 0">
+    No data available.
+  </div>
+  <div
+    *ngIf="validatedData && validatedData.length > 0"
+    style="text-align: center; margin-top: 20px"
+  >
+    <button style="font-size: 24px; cursor: pointer" (click)="addRow()">
+      +
+    </button>
   </div>
 </div>

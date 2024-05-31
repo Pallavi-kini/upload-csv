@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "upload-csv:build:production"
+              "buildTarget": "upload-csv:build:production"
             },
             "development": {
-              "browserTarget": "upload-csv:build:development"
+              "buildTarget": "upload-csv:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "upload-csv:build"
+            "buildTarget": "upload-csv:build"
           }
         },
         "test": {

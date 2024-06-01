@@ -6,76 +6,43 @@
     <span> CSV Uploader </span>
   </div>
   <h2>Students Detail</h2>
-  <div style="overflow-x: auto">
-    <table *ngIf="validatedData && validatedData.length > 0">
-      <thead>
-        <tr class="tr-head">
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>CGPA</th>
+  <div class="card">
+    <p-table [value]="validatedData">
+      <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{ col.header }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of validatedData">
-          <td [ngClass]="row.errors?.Name ? 'error-cell' : 'valid-cell'">
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td *ngFor="let col of columns">
             <input
-              type="text"
-              [(ngModel)]="row.Name"
-              [ngClass]="row.errors?.Name ? 'error-input' : ''"
-              (keyup)="handleCheckForString($event.target)"
+              [(ngModel)]="row[col.field]"
+              [type]="
+                col.field === 'Phone' || col.field === 'CGPA'
+                  ? 'number'
+                  : 'text'
+              "
+              [ngClass]="
+                row.errors && row.errors[col.field] ? 'error-input' : ''
+              "
+              (input)="logInputValue(row[col.field])"
             />
-          </td>
-          <td [ngClass]="row.errors?.Email ? 'error-cell' : 'valid-cell'">
-            <input
-              type="email"
-              [(ngModel)]="row.Email"
-              [ngClass]="row.errors?.Email ? 'error-input' : ''"
-            />
-          </td>
-          <td [ngClass]="row.errors?.Phone ? 'error-cell' : 'valid-cell'">
-            <input
-              type="number"
-              [(ngModel)]="row.Phone"
-              [ngClass]="row.errors?.Phone ? 'error-input' : ''"
-            />
-          </td>
-          <td [ngClass]="row.errors?.Addresss ? 'error-cell' : 'valid-cell'">
-            <input
-              type="text"
-              [(ngModel)]="row.Addresss"
-              [ngClass]="row.errors?.Addresss ? 'error-input' : ''"
-            />
-          </td>
-          <td [ngClass]="row.errors?.City ? 'error-cell' : 'valid-cell'">
-            <input
-              type="text"
-              [(ngModel)]="row.City"
-              [ngClass]="row.errors?.City ? 'error-input' : ''"
-            />
-          </td>
-          <td [ngClass]="row.errors?.CGPA ? 'error-cell' : 'valid-cell'">
-            <input
-              type="number"
-              [(ngModel)]="row.CGPA"
-              [ngClass]="row.errors?.CGPA ? 'error-input' : ''"
-            />
+            <div
+              *ngIf="row.errors && row.errors[col.field]"
+              class="error-message"
+            >
+              {{ row.errors[col.field] }}
+            </div>
           </td>
         </tr>
-      </tbody>
-    </table>
+      </ng-template>
+    </p-table>
   </div>
-  <div *ngIf="!validatedData || validatedData.length === 0">
-    No data available.
-  </div>
-  <div
-    *ngIf="validatedData && validatedData.length > 0"
-    style="text-align: center; margin-top: 20px"
-  >
-    <button style="font-size: 24px; cursor: pointer" (click)="addRow()">
-      +
-    </button>
+  <div>
+    <button (click)="addRow()">+</button>
   </div>
 </div>

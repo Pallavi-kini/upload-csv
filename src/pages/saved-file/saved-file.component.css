@@ -1,32 +1,16 @@
-.td-box {
-  border: 1px solid black;
-  padding: 15px;
-}
-
-.tr-head {
-  outline: 1px solid black;
-}
-
 .table-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.invalid {
-  background-color: #f8d7da;
-}
-
-.valid-cell {
-  border: 1px solid black;
-  color: black;
-  padding: 15px;
-}
-
-.error-cell {
+.error-input {
   border: 1px solid red;
+}
+
+.error-message {
   color: red;
-  padding: 15px;
+  font-size: 12px;
 }
 
 .table-container {
@@ -44,7 +28,6 @@
 
 .home-box {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   gap: 9px;
   width: 100%;

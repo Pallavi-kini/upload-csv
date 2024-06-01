@@ -45,6 +45,13 @@
     <div>
       <button (click)="addRow()">+</button>
     </div>
+    <div
+      routerLink="estimated"
+      style="color: blue; margin-top: 10px; cursor: pointer"
+    >
+      View Estimated Report
+    </div>
   </div>
+
   <div *ngIf="validatedData.length === 0">No Data Found</div>
 </div>

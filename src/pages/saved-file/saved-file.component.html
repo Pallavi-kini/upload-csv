@@ -6,43 +6,45 @@
     <span> CSV Uploader </span>
   </div>
   <h2>Students Detail</h2>
-  <div class="card">
-    <p-table [value]="validatedData">
-      <ng-template pTemplate="header">
-        <tr>
-          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-            {{ col.header }}
-            <p-sortIcon [field]="col.field"></p-sortIcon>
-          </th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-row>
-        <tr>
-          <td *ngFor="let col of columns">
-            <input
-              [(ngModel)]="row[col.field]"
-              [type]="
-                col.field === 'Phone' || col.field === 'CGPA'
-                  ? 'number'
-                  : 'text'
-              "
-              [ngClass]="
-                row.errors && row.errors[col.field] ? 'error-input' : ''
-              "
-              (input)="logInputValue(row[col.field])"
-            />
-            <div
-              *ngIf="row.errors && row.errors[col.field]"
-              class="error-message"
-            >
-              {{ row.errors[col.field] }}
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+  <div *ngIf="validatedData && validatedData.length > 0">
+    <div class="card">
+      <p-table [value]="validatedData">
+        <ng-template pTemplate="header">
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{ col.header }}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td *ngFor="let col of columns">
+              <input
+                [(ngModel)]="row[col.field]"
+                [type]="
+                  col.field === 'Phone' || col.field === 'CGPA'
+                    ? 'number'
+                    : 'text'
+                "
+                [ngClass]="
+                  row.errors && row.errors[col.field] ? 'error-input' : ''
+                "
+              />
+              <div
+                *ngIf="row.errors && row.errors[col.field]"
+                class="error-message"
+              >
+                {{ row.errors[col.field] }}
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div>
+      <button (click)="addRow()">+</button>
+    </div>
   </div>
-  <div>
-    <button (click)="addRow()">+</button>
-  </div>
+  <div *ngIf="validatedData.length === 0">No Data Found</div>
 </div>

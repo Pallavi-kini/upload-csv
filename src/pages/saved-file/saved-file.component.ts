@@ -23,7 +23,6 @@ export class SavedFileComponent implements OnInit {
     this.storeCsvService.csvData$.subscribe((data) => {
       if (data !== null) {
         this.csvData = data;
-        console.log(this.csvData);
         this.parsedData = data.map((item) => {
           // Loop through each property of the item
           for (const prop in item) {
@@ -38,7 +37,6 @@ export class SavedFileComponent implements OnInit {
           let cgpa = NaN;
           if (item.hasOwnProperty('CGPA') || item.hasOwnProperty('CGPA\r')) {
             const cgpaValue = item['CGPA'] || item['CGPA\r'];
-            console.log(cgpaValue);
             if (cgpaValue) {
               cgpa = parseFloat(cgpaValue.toString().replace('\r', ''));
             }
@@ -62,8 +60,6 @@ export class SavedFileComponent implements OnInit {
       }
     });
     this.updateColumns();
-    console.log(this.validatedData);
-    this.validatedData;
   }
 
   isNumeric = (value: string | number) => {
@@ -139,10 +135,5 @@ export class SavedFileComponent implements OnInit {
       City: '',
       CGPA: '',
     });
-  }
-
-  logInputValue(data: any) {
-    console.log(data);
-    console.log(this.isNumeric(data));
   }
 }

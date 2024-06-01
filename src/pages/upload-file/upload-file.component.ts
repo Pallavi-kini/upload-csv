@@ -18,8 +18,6 @@ export class UploadFileComponent {
     if (file.name.split('.').pop().toLowerCase() !== 'csv') {
       this.selectedFile = 'Please upload a CSV file';
       this.showNextPage = false;
-      // console.error('Error: Please upload a CSV file.');
-      // return;
     } else {
       this.selectedFile = file.name;
       this.showNextPage = true;
@@ -36,29 +34,7 @@ export class UploadFileComponent {
         };
       }
     }
-    // if (this.selectedFile) {
-    //   const reader = new FileReader();
-    //   reader.readAsText(this.selectedFile);
-    //   reader.onload = () => {
-    //     const csvContent = reader.result as string; // Get the CSV content from reader.result
-    //     const parsedData = this.parseCsv(csvContent); // Parse the CSV content
-    //     this.StoreCsvService.setCsvData(parsedData); // Store the parsed data
-    //   };
-    //   reader.onerror = (error) => {
-    //     console.error('Error reading file:', error);
-    //   };
-    // }
   }
-
-  // onFileChange(event: any): void {
-  //   const file = event.target.files[0];
-  //   if (!file) return; // No file selected, do nothing
-
-  //   // Check if the file is not in CSV format
-  //   if (file.name.split('.').pop().toLowerCase() !== 'csv') {
-  //     console.error('Error: Please upload a CSV file.');
-  //     return;
-  //   }
 
   // Method to process CSV content
   private parseCsv(csvContent: string): any[] {
